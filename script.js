@@ -3,10 +3,7 @@
 
 
 
-let userTopPos 
-let userLeftPos 
-let userHeight 
-let userWidth 
+let userTopPos, userLeftPos, userHeight, userWidth; 
 const canvas = document.querySelector('.canvas')
 
 document.querySelector('.menu').addEventListener('click', function(e){
@@ -19,16 +16,14 @@ document.querySelector('.menu').addEventListener('click', function(e){
     userWidth = document.querySelector('.width').value
 
 
-    let userShape;
-    if (userShapeSelection.classList.contains('triangle')) userShape = 'triangle';
-    if (userShapeSelection.classList.contains('circle')) userShape = 'circle';
-    if (userShapeSelection.classList.contains('square')) userShape = 'square';
+    let userShape = userShapeSelection.getAttribute('shape');
+    // if (userShapeSelection.classList.contains('triangle')) userShape = 'triangle';
+    // if (userShapeSelection.classList.contains('circle')) userShape = 'circle';
+    // if (userShapeSelection.classList.contains('square')) userShape = 'square';
         
     const shapeValues = generateShapeStyles(userShape);
-    console.log(shapeValues);
     
     renderShape(userShape, shapeValues);
-    console.log('here');
     
 })
 
@@ -59,15 +54,22 @@ var generateShapeStyles = function(shape){
 
 
 var renderShape = function(shape, styles){
-    var newShape = document.createElement('div')
-    newShape.classList.add('shape', `shape-${shape}`)
+    var newShape = document.createElement('div');
+    newShape.classList.add('shape', `shape-${shape}`);
+    newShape.setAttribute('shape', `${shape}`);
     canvas.appendChild(newShape);
     Object.assign(newShape.style, styles);
 }
 
+canvas.addEventListener('click', function(e){
+    const pressedShape = e.target.closest('.shape')
+    if (!pressedShape) return;
+
+    console.log(pressedShape)
+    const initiitalTop = pressedShape
 
 
-
+})
 
 
 
