@@ -57,15 +57,21 @@ body {
   border-radius: 50%;
   position: absolute;
   transform: translate(-50%, -50%); }
+  .shape-circle:hover {
+    cursor: pointer; }
 
 .shape-square {
   background-color: goldenrod;
   border-radius: 1px;
   position: absolute;
   transform: translate(-50%, -50%); }
+  .shape-square:hover {
+    cursor: pointer; }
 
 .shape-triangle {
   width: 0;
   height: 0;
   position: absolute;
   transform: translate(-50%, -50%); }
+  .shape-triangle:hover {
+    cursor: pointer; }
