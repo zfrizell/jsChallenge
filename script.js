@@ -57,81 +57,82 @@ var renderShape = function(shape, styles){
     Object.assign(newShape.style, styles);
 }
 
-const savedPositions = [];
 
 
 
-let startPosTop, startPosLeft, currentPosTop, currentPosLeft, topOffset = 0, LeftOffset = 0;
-let storedShapePositions
-
-document.addEventListener('mousedown', getStartingPos)
-document.addEventListener('mouseup', listenForMouseUp)
 
 
 
-function getStartingPos(e){
-    const clickedShape = e.target.closest('.shape-target')
-    if (!clickedShape) return;
-    console.log(clickedShape.id);
-     storedShapePositions = (savedPositions.find(obj => obj.id === clickedShape.id));
-    if (!storedShapePositions) {
-        savedPositions.push({id: clickedShape.id, startPosTop, startPosLeft, currentPosTop, currentPosLeft, topOffset: 0, LeftOffset: 0}) 
+class DraggableShapes {
+
+    constructor() {
+
+    // array to store objects that hold the positions of each shape that has been moved. 
+    this._savedPositions = [];
+    // variables to hold the current shape postion and id of the shape that was clicked on.
+    this._currentShapePositions;
+    this._currentShapeId;
+
+    
+    this._mouseFollower = this.followMouse.bind(this)
+
+    // listens for a mouse pressed down
+    body.addEventListener('mousedown', this.mouseDownOnShape.bind(this));
+
+}
+
+
+    
+
+    mouseDownOnShape(e){
+        // delegate to the shape that was clicked on
+        const clickedShape = e.target.closest('.shape-target')
+        if (!clickedShape) return;
+
+        // if the shape has already been moved then select it's coordinates
+        this._currentShapePositions = this._savedPositions.find(obj => obj.id === clickedShape.id);
+
+        if (!this._currentShapePositions) {
+            this._currentShapePositions = {id: clickedShape.id, startPosTop: 0, startPosLeft: 0, currentPosTop: 0, currentPosLeft: 0, topOffset: 0, LeftOffset: 0}
+            this._savedPositions.push(this._currentShapePositions);
+        }
+        clickedShape.style.zIndex = 10; 
+    
+        // store the starting positions of the shape
+        this._currentShapePositions.startPosTop = e.clientY - this._currentShapePositions.topOffset;
+        this._currentShapePositions.startPosLeft = e.clientX - this._currentShapePositions.LeftOffset;   
+        body.addEventListener('mousemove', this._mouseFollower)
     }
-    console.log(storedShapePositions);
-    console.log(savedPositions);
-    startPosTop = e.clientY - topOffset;
-    startPosLeft = e.clientX - LeftOffset;   
-    console.log(`starting positions ${startPosLeft}, ${startPosTop}`)
-    listenForMouseMoving()
+
+    followMouse(e){
+        e.preventDefault();
+        const hoveredShape = document.getElementById(this._currentShapePositions.id)    
+
+        // work out the current position of the shape
+        this._currentShapePositions.currentPosTop =  e.clientY - this._currentShapePositions.startPosTop;
+        this._currentShapePositions.currentPosLeft =  e.clientX - this._currentShapePositions.startPosLeft;
+
+        // use css transform translate to move the shape
+        Object.assign(hoveredShape.style, {"transform": `translate(-50%, -50%) translateX(${this._currentShapePositions.currentPosLeft}px) translateY(${this._currentShapePositions.currentPosTop}px)`, 'z-index': 10})
+
+        // store the ammount the shape has moved.
+        this._currentShapePositions.topOffset = this._currentShapePositions.currentPosTop;
+        this._currentShapePositions.LeftOffset = this._currentShapePositions.currentPosLeft;
+
+        body.addEventListener('mouseup', this.mouseReleased.bind(this));
+
+    }
+
+
+    mouseReleased(e){
+        e.preventDefault();
+        const hoveredShape = document.getElementById(this._currentShapePositions.id)
+        if (!hoveredShape) return;
+
+        body.removeEventListener('mousemove', this._mouseFollower);
+        hoveredShape.style.zIndex = 0;
+    }
 }
 
+const dragShapes = new DraggableShapes()
 
-
-
-function listenForMouseMoving()  {
-    document.addEventListener('mousemove', followMouse)
-}
-
-
-
-
-
-function listenForMouseUp(e){
-    e.preventDefault();
-    const clickedShape = e.target.closest('.shape-target')
-    if (!clickedShape) return;
-    console.log('mouse up yo');
-    console.log(e.clientX, e.clientY)
-
-    document.removeEventListener('mousemove', followMouse);
-    
-    console.log(startPosTop, startPosLeft, currentPosTop, currentPosLeft);
-
-}
-
-
-function followMouse(e){
-    e.preventDefault();
-    const clickedShape = e.target.closest('.shape-target');
-    if (!clickedShape) return;
-    
-    currentPosTop =  e.clientY - startPosTop;
-    currentPosLeft =  e.clientX - startPosLeft;
-
-    console.log(`current positions ${currentPosLeft}, ${currentPosTop}`);
-    Object.assign(clickedShape.style, {"transform": `translate(-50%, -50%) translateX(${currentPosLeft}px) translateY(${currentPosTop}px)`})
-    topOffset = currentPosTop;
-    LeftOffset = currentPosLeft;
-}
-
-
-// document.addEventListener('mousemove', followMouse)
-
-
-
-
-
-
-const testArr = [{id: 1234, swag: 'dolla'}, {id: 1235, so: 'ray'}, {id: 1236, it: 'fu'}]
-
-console.log(testArr.find(obj => obj.id === 1239))
