@@ -2,7 +2,9 @@
 <html lang="en">
     <head>
         <link rel="stylesheet" href="css/style.css">
-        <script defer src="script.js"></script>
+        <script type="module" defer src="src/js/controller.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 
     </head>
 
@@ -30,14 +32,23 @@
                             <input type="number" id="height" class="height">
                         </div>
                     </div>
+                    <div class="dropdown">
+                        <button  class="dropdown__btn">Movement</button>
+                        <div id="dropdownButton" class="dropdown__content">
+                            <a href="#">None</a>
+                            <a href="#">Walls</a>
+                            <a href="#">Spiral</a>
+                        </div>
+                    </div>
                 </div>
                 <!-- <div class="shape-circle"></div> -->
                 <!-- <div class="shape-triangle"></div> -->
-                <div class="shape-square"></div>
+                <div class="shape-square move-square menu__icon" style="height: 40px; width: 40px; left: 800px"></div>
+                <div class="shape-circle move-square" style="height: 40px; width: 40px; top: 50px; left: 400px"></div>
                 
             </div>
             <div class="menu">
-                
+            
                     <svg class="menu__icon triangle" shape-name="triangle">
                         <use xlink:href="symbol-defs.svg#icon-controller-play"></use>
                     </svg>

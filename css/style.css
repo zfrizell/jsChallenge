@@ -16,7 +16,7 @@ body {
 .form-container {
   background-color: whitesmoke;
   width: 40%;
-  text-align: center;
+  justify-content: center;
   padding: 1rem;
   box-shadow: 1rem 1rem 2rem rgba(0, 0, 0, 0.2);
   border-radius: 5px; }
@@ -30,6 +30,34 @@ body {
   padding: 0.5rem; }
   .form__input:active {
     outline: none; }
+
+.dropdown {
+  justify-self: left;
+  position: relative;
+  display: inline-block; }
+  .dropdown__btn {
+    padding: 0.5rem;
+    border: none;
+    cursor: pointer; }
+    .dropdown__btn:hover, .dropdown__btn:focus {
+      background-color: grey; }
+  .dropdown__content {
+    display: none;
+    position: absolute;
+    background-color: grey;
+    min-width: 2rem;
+    box-shadow: 1rem 1rem 2rem rgba(0, 0, 0, 0.2);
+    z-index: 1; }
+    .dropdown__content a {
+      color: black;
+      display: block;
+      text-decoration: none;
+      padding: 0.5rem 1rem; }
+      .dropdown__content a:hover {
+        background-color: grey; }
+
+.show {
+  display: block; }
 
 .menu {
   background-color: grey;
@@ -48,6 +76,10 @@ body {
   align-self: center; }
 
 .triangle {
+  background-image: url(../symbol-defs.svg#icon-controller-play);
+  background-position: center;
+  background-size: cover;
+  display: block;
   transform: rotate(270deg);
   height: 5rem;
   width: 5rem; }

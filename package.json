@@ -1,10 +1,10 @@
 {
   "name": "js-challenge",
   "version": "1.0.0",
-  "description": "web app that allows user to create shapes",
-  "main": "index.html",
+  "description": "a web app which allows a user to create movable shapes",
+  "main": "src/js/controller.js",
   "scripts": {
-    "watch:sass": "node-sass sass/main.scss css/style.css -w"
+    "watch:sass": "node-sass src/sass/main.scss css/style.css -w"
   },
   "author": "zack frizell",
   "license": "ISC",

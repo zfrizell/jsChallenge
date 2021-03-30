@@ -1,0 +1,40 @@
+.dropdown {
+  justify-self: left;
+  position: relative;
+  display: inline-block;
+
+  &__btn {
+    padding: 0.5rem;
+    border: none;
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+      background-color: grey;
+    }
+  }
+
+  &__content {
+    display: none;
+    position: absolute;
+    background-color: grey;
+    min-width: 2rem;
+    box-shadow: $shadow;
+    z-index: 1;
+
+    & a {
+      color: black;
+      display: block;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+
+      &:hover {
+        background-color: grey;
+      }
+    }
+  }
+}
+
+.show {
+  display: block;
+}
