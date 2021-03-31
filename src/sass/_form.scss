@@ -1,4 +1,10 @@
 .form {
+  @media screen and (max-width: 479px) {
+    display: none;
+  }
+  @media screen and (min-width: 479px) {
+    display: block;
+  }
   display: block;
   background-color: rgba(#49b7de, 0.3);
   width: 40%;
@@ -58,15 +64,12 @@
     padding-bottom: 1rem;
     border-bottom: 1px solid #148ffa;
   }
-
-  @media screen and (max-width: 479px) {
-    display: none;
-  }
 }
 
 .shape-builder {
+  width: 50%;
   display: none;
-  font-size: 2rem;
+  font-size: 1rem;
   font-weight: 600;
   padding: 1rem 1.5rem;
   border: none;

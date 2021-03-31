@@ -98,7 +98,7 @@ const square = document.querySelector('.move-square')
 
 
 
-square.addEventListener('click', function(){
+document.getElementById('walls').addEventListener('click', function(){
     const allShapes = document.querySelectorAll('.shape-target')
 
     const viewportWidth = window.innerWidth;
@@ -144,9 +144,11 @@ square.addEventListener('click', function(){
 
        
 
-         $(shape).animate({left: `${startingLeft}px`}, timeToLeft, "linear");
+        $(shape).animate({left: `${startingLeft}px`}, timeToLeft, "linear");
         $(shape).animate({left: `${viewportWidth - matrix.e - width}px`}, 2000, "linear");
         $(shape).animate({left: `${startingLeftShapePos}px`}, timeToRight, "linear");
+
+        
         // $(shape).animate({left: '600px'});
         // $(shape).animate({left: `400px`});
     })
