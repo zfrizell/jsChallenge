@@ -1,21 +1,34 @@
 .menu {
-  background-color: grey;
+  background-color: rgba(#57b1ff, 1);
   position: fixed;
-  border-top: 1px solid grey;
+  border-top: 1px solid rgba(#57b1ff, 0.4);
 
   bottom: 0;
   left: 0;
   width: 100%;
-
+  height: 10%;
   display: flex;
   justify-content: space-around;
+
+  @media screen and (max-width: 479px) {
+  }
 }
 
 .menu__icon {
-  height: 4rem;
-  width: 4rem;
-  fill: orangered;
+  height: 5rem;
+  width: 5rem;
+  fill: #24e0b0;
   align-self: center;
+  cursor: pointer;
+  overflow: hidden;
+
+  @media screen and (max-width: 479px) {
+    height: 10rem;
+    width: 10rem;
+  }
+  &:active {
+    fill: #54ffbc;
+  }
 }
 
 .triangle {
@@ -24,6 +37,11 @@
   background-size: cover;
   display: block;
   transform: rotate(270deg);
-  height: 5rem;
-  width: 5rem;
+  height: 6.2rem;
+  width: 6.2rem;
+
+  @media screen and (max-width: 479px) {
+    height: 12rem;
+    width: 12rem;
+  }
 }

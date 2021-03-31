@@ -6,14 +6,21 @@
   } */
 
 body {
-  background-color: #dcdcdc;
+  background-color: rgba(#5dedf5, 0.4);
+  background-repeat: cover;
+  font-family: "lato", sans-serif;
 }
 
 .container {
   padding: 2rem;
-  height: 95vh;
+  // height: 95vh;
 }
 
 .canvas {
   position: relative;
+  height: 90%;
+}
+
+.hidden {
+  display: none;
 }

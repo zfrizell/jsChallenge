@@ -7,17 +7,18 @@
     padding: 0.5rem;
     border: none;
     cursor: pointer;
+    border-radius: 5px;
 
     &:hover,
     &:focus {
-      background-color: grey;
+      background-color: #5dabf0;
     }
   }
 
   &__content {
     display: none;
     position: absolute;
-    background-color: grey;
+    background-color: #5dabf0;
     min-width: 2rem;
     box-shadow: $shadow;
     z-index: 1;
@@ -29,7 +30,7 @@
       padding: 0.5rem 1rem;
 
       &:hover {
-        background-color: grey;
+        background-color: #148ffa;
       }
     }
   }

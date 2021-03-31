@@ -1,22 +1,82 @@
-.form-container {
-  background-color: whitesmoke;
+.form {
+  display: block;
+  background-color: rgba(#49b7de, 0.3);
   width: 40%;
   justify-content: center;
   padding: 1rem;
+  // border: 1px solid grey;
   box-shadow: $shadow;
   border-radius: 5px;
+
+  @media screen and (max-width: 479px) {
+    width: 100%;
+  }
+  &__inputs {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+
+    @media screen and (max-width: 950px) {
+      grid-template-rows: repeat(4, 1fr);
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__input {
+    padding: 0.5rem;
+
+    &--field {
+      background-color: rgba(white, 0.5);
+      border: none;
+      padding: 0.3rem 0.3rem;
+      width: 5rem;
+    }
+
+    &:active {
+      border: none;
+      outline: none;
+    }
+    &--label {
+      margin-bottom: 10px;
+      font-family: inherit;
+    }
+  }
+
+  &__heading {
+    color: #148ffa;
+    text-align: center;
+    font-size: 2rem;
+    letter-spacing: 1px;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #148ffa;
+    margin: 1rem 0;
+  }
+
+  &__sub-heading {
+    color: #148ffa;
+    text-align: center;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #148ffa;
+  }
+
+  @media screen and (max-width: 479px) {
+    display: none;
+  }
 }
 
-.form {
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-  grid-template-columns: 1fr 1fr;
-}
+.shape-builder {
+  display: none;
+  font-size: 2rem;
+  font-weight: 600;
+  padding: 1rem 1.5rem;
+  border: none;
+  background-color: #fff;
+  color: #1060a5;
+  border-radius: 10rem;
+  box-shadow: $shadow;
+  cursor: pointer;
 
-.form__input {
-  padding: 0.5rem;
-
-  &:active {
-    outline: none;
+  @media screen and (max-width: 479px) {
+    display: block;
   }
 }

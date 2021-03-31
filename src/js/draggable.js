@@ -102,8 +102,15 @@ class DraggableShapes {
         }
     
         // store the starting positions of the shape
-        this._currentShapePos.startPosTop = e.clientY - this._currentShapePos.topOffset;
-        this._currentShapePos.startPosLeft = e.clientX - this._currentShapePos.LeftOffset;   
+
+        if (e.type === "touchstart") {
+            console.log('touchstart');
+            
+            this._currentShapePos.startPosTop = e.touches[0].clientX - this._currentShapePos.topOffset;
+            this._currentShapePos.startPosTop = e.touches[0].clientY - this._currentShapePos.topOffset;
+          } else { this._currentShapePos.startPosTop = e.clientY - this._currentShapePos.topOffset;
+                   this._currentShapePos.startPosLeft = e.clientX - this._currentShapePos.LeftOffset;
+                }   
         body.addEventListener('mousemove', this._mouseFollower)
     }
 
@@ -112,8 +119,13 @@ class DraggableShapes {
         const hoveredShape = document.getElementById(this._currentShapePos.id)    
 
         // work out the current position of the shape
-        this._currentShapePos.currentPosTop =  e.clientY - this._currentShapePos.startPosTop;
-        this._currentShapePos.currentPosLeft =  e.clientX - this._currentShapePos.startPosLeft;
+        if (e.type === "touchstart") {
+            initialX = e.touches[0].clientX - xOffset;
+            initialY = e.touches[0].clientY - yOffset;
+          } else {
+              this._currentShapePos.currentPosTop =  e.clientY - this._currentShapePos.startPosTop;
+              this._currentShapePos.currentPosLeft =  e.clientX - this._currentShapePos.startPosLeft;
+            }
 
         // use css transform translate to move the shape
         Object.assign(hoveredShape.style, {"transform": `translate(-50%, -50%) translateX(${this._currentShapePos.currentPosLeft}px) translateY(${this._currentShapePos.currentPosTop}px)`, 'z-index': 10})
