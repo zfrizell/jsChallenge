@@ -21,7 +21,7 @@ canvasController.createCanvas();
 
 // listen for user click on the menu bar.
 menuBar.addEventListener('click', function(e){
-    // select the shape icon that the user has clicked on
+    // select the shape icon that the user clicked on
     const userShapeSelection = e.target.closest('.menu__icon');
     if (!userShapeSelection) return;
     
