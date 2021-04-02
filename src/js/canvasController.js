@@ -21,6 +21,7 @@ class CanvasController {
     this._layer = new Konva.Layer();
  }
 
+    // store the data for each shape in the _shapes array
     generateShape(shape, shapeValues){
         if (shape === 'square'){
             this._shapes.push( new Konva.Rect({
@@ -28,13 +29,13 @@ class CanvasController {
                 y: shapeValues.top - shapeValues.height/2,
                 width: shapeValues.width,
                 height: shapeValues.height,
-                fill: '#00D2FF',
+                fill: '#FF4500',
                 draggable: true,
               }));
         }
 
         if (shape === 'triangle'){
-                // generate the coords of the 3 points of the triangle
+                // calculate the coords of the 3 points of the triangle
                 const x1 = shapeValues.left + shapeValues.width/2
                 const y1 = shapeValues.top + shapeValues.height/2
                 const x2 = shapeValues.left 
@@ -46,7 +47,7 @@ class CanvasController {
                     points: [x1,y1,x2,y2,x3,y3],
                     fill: '#00D2FF',
                     closed: true,
-                    draggable: true
+                    draggable: true,
                   }));
         }
 
@@ -61,10 +62,10 @@ class CanvasController {
                 }))
         }
 
-        
+        // loop through the shapes array and reder each one of the canvas
         this._shapes.forEach(shape => {
             
-            // stores this._shapes so that they aren't rerendered each time they move. note -- after being cached they can no longer be edited
+            // stores shape data so that they aren't rerendered each time they move. note -- after being cached they can no longer be edited
             shape.cache();
 
             shape.on('mouseover', function () {
@@ -84,38 +85,43 @@ class CanvasController {
           
             const viewWidth = window.innerWidth
               
-              let centerX 
+
+            let centerX 
              if (shape.attrs.points) {
                  centerX = shape.attrs.points[0]
                 } else {
                     centerX = shape.attrs.x
                 }
 
+                // shape width / 2 will be stores in these vars. without this the middle of the shape will 'bounce' off each side.
                let leftSide = 0, rightSide = 0
-
                if (shape.attrs.points) {
                    leftSide = shape.attrs.points[3];
                    rightSide = shape.attrs.points[3];
-                   console.log(shape.x);
-                   
-                //    shape.x() = (shape.attrs.points[0] + shape.attrs.points[4]) / 2
+                   console.log(shape);
                 }
                if (shape.attrs.radiusX) {
                    leftSide = rightSide = shape.attrs.radiusX 
+
+
                 };
-               if (shape.attrs.width) rightSide = shape.attrs.width;
+               if (shape.attrs.width) {
+                   rightSide = shape.attrs.width;
+                }
                 
     
             this._animWalls.push(new Konva.Animation(wallToWall, this._layer));
+
+            // controls on direction and speed of animation
             let direction = 1;
-            let rate = 300
+            let speed = 300            
 
+            console.log(shape.attrs.x);
+            console.log(leftSide);
+            console.log(rightSide);
             
-
             function wallToWall(frame) {
-                console.log(shape.x());
-                
-                let newX = shape.x() - (frame.timeDiff / 1000) * rate  * direction;
+                let newX = shape.attrs.x - (frame.timeDiff / 1000) * speed * direction;
                 if (newX < leftSide){
                     direction = -1;
                 } else if (newX > viewWidth - rightSide){
@@ -123,21 +129,15 @@ class CanvasController {
                 }
                 shape.x(newX)
             }
-
-            
             this._animWalls[i].start()
         })
     }
     stopAnimation(){
-
         this._shapes.forEach((_, i) => {
             this._animWalls[i].stop()
         })
         this._animWalls = [];
     }
 }
-
-
-
 
 export default new CanvasController;

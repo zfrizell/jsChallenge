@@ -5,24 +5,3 @@
 .konva-container {
   z-index: 5;
 }
-
-.clear-canvas {
-  position: absolute;
-  right: 20px;
-  top: 20px;
-  font-size: 1rem;
-  font-weight: 600;
-  padding: 1rem 1.5rem;
-  border: none;
-  background-color: #fff;
-  color: #1060a5;
-  border-radius: 10rem;
-  box-shadow: $shadow;
-  cursor: pointer;
-  z-index: 20;
-
-  &:active,
-  &:hover {
-    background-color: #b0daff;
-  }
-}
