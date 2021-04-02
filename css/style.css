@@ -1,8 +1,8 @@
 * {
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0; }
 
-/* html {
-  } */
 body {
   background-color: rgba(93, 237, 245, 0.4);
   background-repeat: cover;
@@ -19,6 +19,10 @@ body {
   display: none; }
 
 .form {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 1;
   display: block;
   background-color: rgba(73, 183, 222, 0.3);
   width: 40%;
@@ -115,6 +119,9 @@ body {
 .show {
   display: block; }
 
+.konva-container {
+  z-index: 5; }
+
 .menu {
   background-color: #57b1ff;
   position: fixed;
@@ -125,54 +132,28 @@ body {
   height: 10%;
   display: flex;
   justify-content: space-around; }
-
-.menu__icon {
-  height: 5rem;
-  width: 5rem;
-  fill: #24e0b0;
-  align-self: center;
-  cursor: pointer;
-  overflow: hidden; }
-  @media screen and (max-width: 479px) {
-    .menu__icon {
-      height: 10rem;
-      width: 10rem; } }
-  .menu__icon:active {
-    fill: #54ffbc; }
-
-.triangle {
-  background-image: url(../symbol-defs.svg#icon-controller-play);
-  background-position: center;
-  background-size: cover;
-  display: block;
-  transform: rotate(270deg);
-  height: 6.2rem;
-  width: 6.2rem; }
-  @media screen and (max-width: 479px) {
-    .triangle {
-      height: 12rem;
-      width: 12rem; } }
-
-.shape-circle {
-  background-color: yellowgreen;
-  border-radius: 50%;
-  position: absolute;
-  transform: translate(-50%, -50%); }
-  .shape-circle:hover {
-    cursor: pointer; }
-
-.shape-square {
-  background-color: goldenrod;
-  border-radius: 1px;
-  position: absolute;
-  transform: translate(-50%, -50%); }
-  .shape-square:hover {
-    cursor: pointer; }
-
-.shape-triangle {
-  width: 0;
-  height: 0;
-  position: absolute;
-  transform: translate(-50%, -50%); }
-  .shape-triangle:hover {
-    cursor: pointer; }
+  .menu__icon {
+    height: 5rem;
+    width: 5rem;
+    fill: #24e0b0;
+    align-self: center;
+    cursor: pointer;
+    overflow: hidden; }
+    @media screen and (max-width: 479px) {
+      .menu__icon {
+        height: 10rem;
+        width: 10rem; } }
+    .menu__icon:active {
+      fill: #54ffbc; }
+    .menu__icon-triangle {
+      background-image: url(../symbol-defs.svg#icon-controller-play);
+      background-position: center;
+      background-size: cover;
+      display: block;
+      transform: rotate(270deg);
+      height: 6.2rem;
+      width: 6.2rem; }
+      @media screen and (max-width: 479px) {
+        .menu__icon-triangle {
+          height: 12rem;
+          width: 12rem; } }

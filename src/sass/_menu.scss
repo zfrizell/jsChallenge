@@ -12,36 +12,36 @@
 
   @media screen and (max-width: 479px) {
   }
-}
 
-.menu__icon {
-  height: 5rem;
-  width: 5rem;
-  fill: #24e0b0;
-  align-self: center;
-  cursor: pointer;
-  overflow: hidden;
+  &__icon {
+    height: 5rem;
+    width: 5rem;
+    fill: #24e0b0;
+    align-self: center;
+    cursor: pointer;
+    overflow: hidden;
 
-  @media screen and (max-width: 479px) {
-    height: 10rem;
-    width: 10rem;
-  }
-  &:active {
-    fill: #54ffbc;
-  }
-}
+    @media screen and (max-width: 479px) {
+      height: 10rem;
+      width: 10rem;
+    }
+    &:active {
+      fill: #54ffbc;
+    }
 
-.triangle {
-  background-image: url(../symbol-defs.svg#icon-controller-play);
-  background-position: center;
-  background-size: cover;
-  display: block;
-  transform: rotate(270deg);
-  height: 6.2rem;
-  width: 6.2rem;
+    &-triangle {
+      background-image: url(../symbol-defs.svg#icon-controller-play);
+      background-position: center;
+      background-size: cover;
+      display: block;
+      transform: rotate(270deg);
+      height: 6.2rem;
+      width: 6.2rem;
 
-  @media screen and (max-width: 479px) {
-    height: 12rem;
-    width: 12rem;
+      @media screen and (max-width: 479px) {
+        height: 12rem;
+        width: 12rem;
+      }
+    }
   }
 }

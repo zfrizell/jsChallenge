@@ -8,52 +8,64 @@
         <link rel="stylesheet" href="css/style.css">
         <script type="module" defer src="src/js/controller.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
+        <script src="https://unpkg.com/konva@7.2.5/konva.min.js"></script>
+        <meta charset="utf-8" />
 
     </head>
 
+    
+
     <body>
-        <div class="container">
-            <div class="canvas">
-                <button class="shape-builder">Shape builder &Vee;</button>
-                <div class="form">
-                    <h2 class="form__heading">Build a shape!</h2>
-                    <h3 class="form__sub-heading">choose the size and location</h3>
-                    <div class="form__inputs">
-                        <div class="form__input">
-                            <label for="left-position" class="form__input--label">Position from left side</label>
-                            <input type="number" id="left-position" class="form__input--field">
+
+        
+                    <!-- <div class="main-content"> -->
+                        <button class="shape-builder">Shape builder &Vee;</button>
+                        <div class="form" id="form">
+                            <h2 class="form__heading">Build a shape!</h2>
+                            <h3 class="form__sub-heading">choose the size and location</h3>
+                            <div class="form__inputs">
+                                <div class="form__input">
+                                    <label for="left-position" class="form__input--label">Position from left side (px)</label>
+                                    <input type="number" id="left-position" class="form__input--field">
+                                </div>
+                                <div class="form__input">
+                                    <label for="top-position" class="form__input--label">Position from top (px)</label>
+                                    <input type="number" id="top-position" class="form__input--field">
+                                </div>
+                                <div class="form__input">
+                                    <label for="width" class="form__input--label">Width (px)</label>
+                                    <input type="number" id="width" class="form__input--field">
+                                </div>
+                                <div class="form__input">
+                                    <label for="height" class="form__input--label">Height (px)</label>
+                                    <input type="number" id="height" class="form__input--field">
+                                </div>
+                            </div>
+                            <div class="dropdown">
+                                <button  class="dropdown__btn">Movement &Vee;</button>
+                                <div id="dropdownButton" class="dropdown__content">
+                                    <a id="dropdown__none"href="#">None</a>
+                                    <a id="dropdown__walls" href="#">Walls</a>
+                                    <a id="dropdown__spiral" href="#">Spiral</a>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form__input">
-                            <label for="top-position" class="form__input--label">Position from top</label>
-                            <input type="number" id="top-position" class="form__input--field">
-                        </div>
-                        <div class="form__input">
-                            <label for="width" class="form__input--label">Width</label>
-                            <input type="number" id="width" class="form__input--field">
-                        </div>
-                        <div class="form__input">
-                            <label for="height" class="form__input--label">Height</label>
-                            <input type="number" id="height" class="form__input--field">
-                        </div>
-                    </div>
-                    <div class="dropdown">
-                        <button  class="dropdown__btn">Movement &Vee;</button>
-                        <div id="dropdownButton" class="dropdown__content">
-                            <a href="#">None</a>
-                            <a id="walls" href="#">Walls</a>
-                            <a href="#">Spiral</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- <div class="shape-circle"></div> -->
-                <!-- <div class="shape-triangle"></div> -->
-                <!-- <div class="shape-circle move-square" style="height: 40px; width: 40px; top: 50px; left: 400px"></div> -->
-                
-            </div>
+                       
+                        <!-- <div class="shape-circle"></div> -->
+                        <div class="shape-triangle"></div>
+                        <!-- <div class="shsape-square move-square" style="position: absolute; height: 40px; width: 40px; top: 50px; left: 400px"></div> -->
+                        
+        
+                    <!-- </div> -->
+        <div id="konva-container">
+
+            
+        </div>
+
+
             <div class="menu">
             
-                    <svg class="menu__icon triangle" shape-name="triangle">
+                    <svg class="menu__icon menu__icon-triangle" shape-name="triangle">
                         <use xlink:href="symbol-defs.svg#icon-controller-play"></use>
                     </svg>
                     <svg class="menu__icon" shape-name="circle">
