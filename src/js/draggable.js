@@ -1,31 +1,34 @@
 const body = document.querySelector('body');
 
-class DraggableElements {
+class DraggableForm {
     constructor() {
-    // array to store objects that hold the positions of each shape that has been moved. 
+    // Array to store objects that hold the positions of each shape that has been moved. 
     this._savedPositions = [];
-    // variables to hold the current shape postion and id of the shape that was clicked on.
+    // Variables to hold the current shape postion and id of the shape that was clicked on.
     this._elementPos;
 
+    // The element to make draggable
+    this._clickedElement;
+
     this._mouseFollower = this.followMouse.bind(this)
-    // listens for a mouse pressed down
+    // Listens for a mouse pressed down
     body.addEventListener('mousedown', this.mouseDownOnShape.bind(this));
 
 }
 
     mouseDownOnShape(e){
         // delegate event to the shape that was clicked
-                const clickedShape = e.target.closest('.form')
-        if (!clickedShape) return;
+        this._clickedElement = e.target.closest('.form')
+        if (!this._clickedElement) return;
         e.stopPropagation();
         
 
         // if the shape has already been moved then select it's coordinates
-        this._elementPos = this._savedPositions.find(obj => obj.id === clickedShape.id);
+        this._elementPos = this._savedPositions.find(obj => obj.id === this._clickedElement.id);
 
         // if this is first time shape has been moved, build it a position object
         if (!this._elementPos) {
-            this._elementPos = {id: clickedShape.id, startPosTop: 0, startPosLeft: 0, currentPosTop: 0, currentPosLeft: 0, topOffset: 0, LeftOffset: 0}
+            this._elementPos = {id: this._clickedElement.id, startPosTop: 0, startPosLeft: 0, currentPosTop: 0, currentPosLeft: 0, topOffset: 0, LeftOffset: 0}
             this._savedPositions.push(this._elementPos);
         }
     
@@ -76,4 +79,4 @@ class DraggableElements {
     }
 }
 
-export default new DraggableElements 
+export default new DraggableForm
