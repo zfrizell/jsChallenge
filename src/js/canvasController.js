@@ -1,8 +1,8 @@
 class CanvasController {
     // an array to store all user generated shapes
     _shapes = []
-    // wall to wall animation
-    animWalls
+    // array to store each shape's wall to wall animation
+    _animWalls = []
     // konva stage for canvas generation
     _stage
     // the layers that are rendered
@@ -80,7 +80,7 @@ class CanvasController {
     }
 
     animationWalls(){
-        this._shapes.forEach(shape => {
+        this._shapes.forEach((shape, i) => {
           
             const viewWidth = window.innerWidth
               
@@ -91,45 +91,49 @@ class CanvasController {
                     centerX = shape.attrs.x
                 }
 
-               let width
-               console.log(shape.x()) 
-               if (shape.attrs.points) width = shape.attrs.points[0] - shape.attrs.points[4];
-               if (shape.attrs.radiusX) width = shape.attrs.radiusX;
-               if (shape.attrs.width) width = shape.attrs.width;
-                
-                console.log(width)
-                 
-            
-    
-            this.animWalls = new Konva.Animation(toLeft, this._layer);
-            let direction = 1;
-            let rate = 8
+               let leftSide = 0, rightSide = 0
 
-            function toLeft(frame) {
-                let newX = shape.x() - (frame.timeDiff / 1000) - rate * direction;
-                if (newX < width/2){
+               if (shape.attrs.points) {
+                   leftSide = shape.attrs.points[3];
+                   rightSide = shape.attrs.points[3];
+                   console.log(shape.x);
+                   
+                //    shape.x() = (shape.attrs.points[0] + shape.attrs.points[4]) / 2
+                }
+               if (shape.attrs.radiusX) {
+                   leftSide = rightSide = shape.attrs.radiusX 
+                };
+               if (shape.attrs.width) rightSide = shape.attrs.width;
+                
+    
+            this._animWalls.push(new Konva.Animation(wallToWall, this._layer));
+            let direction = 1;
+            let rate = 300
+
+            
+
+            function wallToWall(frame) {
+                console.log(shape.x());
+                
+                let newX = shape.x() - (frame.timeDiff / 1000) * rate  * direction;
+                if (newX < leftSide){
                     direction = -1;
-                } else if (newX > viewWidth - width/2){
+                } else if (newX > viewWidth - rightSide){
                     direction = 1;
                 }
                 shape.x(newX)
             }
 
             
-            console.log(this.animWalls.isRunning())
-            /////////
-            if (this.animWalls.isRunning()){
-                this.animWalls.stop()
-            } else {
-                this.animWalls.start();
-            }
+            this._animWalls[i].start()
         })
     }
     stopAnimation(){
 
-        this._shapes.forEach(shape => {
-        this.animWalls.stop();
+        this._shapes.forEach((_, i) => {
+            this._animWalls[i].stop()
         })
+        this._animWalls = [];
     }
 }
 
