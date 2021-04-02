@@ -10,16 +10,15 @@ const dropdownBtnWalls = document.getElementById('dropdown__walls')
 
 
 // provides functionality to allow the form to be draggable
-import DraggableElements from './draggable.js';
+import DraggableForm from './draggable.js';
 // an object that generates and controls a canvas.
 import canvasController from './canvasController.js';
 
 
 // create the canvas
-
 canvasController.createCanvas();
 
-
+// listen for user click on the menu bar.
 menuBar.addEventListener('click', function(e){
     // select the shape icon that the user clicked on
     const userShapeSelection = e.target.closest('.menu__icon');
@@ -50,7 +49,7 @@ menuBar.addEventListener('click', function(e){
 
 
 
-
+// dropdown functionality 
 document.addEventListener('click', function(e){
     if (e.target.closest('.dropdown__btn')) {
         dropdownBtn.classList.toggle('show')
@@ -60,15 +59,15 @@ document.addEventListener('click', function(e){
     }
     
 })
-
+// user click on 'none'
 dropdownBtnNone.addEventListener('click', function(){
     canvasController.stopAnimation();
 });
-
+// user click on 'walls'
 dropdownBtnWalls.addEventListener('click', function(){
     canvasController.animationWalls();
 })
-
+// display the form if user clicks on mobile btn
 btnForMobile.addEventListener('click', function(){
     console.log(getComputedStyle(form).display)
      if (getComputedStyle(form).display === 'none') {

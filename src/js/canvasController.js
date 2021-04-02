@@ -15,7 +15,7 @@ class CanvasController {
     this._stage = new Konva.Stage({
         container: 'konva-container',
         width: windowWidth,
-        height: windowHeight,
+        height: windowHeight
     });
 
     this._layer = new Konva.Layer();
@@ -84,41 +84,26 @@ class CanvasController {
         this._shapes.forEach((shape, i) => {
           
             const viewWidth = window.innerWidth
-              
 
-            let centerX 
-             if (shape.attrs.points) {
-                 centerX = shape.attrs.points[0]
-                } else {
-                    centerX = shape.attrs.x
-                }
-
-                // shape width / 2 will be stores in these vars. without this the middle of the shape will 'bounce' off each side.
+                // shape width / 2 will be stored in these vars. without these the middle of the shape will 'bounce' off each side.
                let leftSide = 0, rightSide = 0
                if (shape.attrs.points) {
                    leftSide = shape.attrs.points[3];
                    rightSide = shape.attrs.points[3];
-                   console.log(shape);
                 }
                if (shape.attrs.radiusX) {
                    leftSide = rightSide = shape.attrs.radiusX 
-
-
                 };
                if (shape.attrs.width) {
                    rightSide = shape.attrs.width;
                 }
                 
-    
             this._animWalls.push(new Konva.Animation(wallToWall, this._layer));
 
             // controls on direction and speed of animation
             let direction = 1;
-            let speed = 300            
+            let speed = 400            
 
-            console.log(shape.attrs.x);
-            console.log(leftSide);
-            console.log(rightSide);
             
             function wallToWall(frame) {
                 let newX = shape.attrs.x - (frame.timeDiff / 1000) * speed * direction;
