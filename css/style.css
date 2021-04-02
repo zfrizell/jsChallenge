@@ -125,23 +125,6 @@ body {
 .konva-container {
   z-index: 5; }
 
-.clear-canvas {
-  position: absolute;
-  right: 20px;
-  top: 20px;
-  font-size: 1rem;
-  font-weight: 600;
-  padding: 1rem 1.5rem;
-  border: none;
-  background-color: #fff;
-  color: #1060a5;
-  border-radius: 10rem;
-  box-shadow: 1rem 1rem 2rem rgba(0, 0, 0, 0.2);
-  cursor: pointer;
-  z-index: 20; }
-  .clear-canvas:active, .clear-canvas:hover {
-    background-color: #b0daff; }
-
 .menu {
   background-color: #57b1ff;
   position: fixed;
@@ -166,10 +149,6 @@ body {
     .menu__icon:active {
       fill: #54ffbc; }
     .menu__icon-triangle {
-      background-image: url(../symbol-defs.svg#icon-controller-play);
-      background-position: center;
-      background-size: cover;
-      display: block;
       transform: rotate(270deg);
       height: 6.2rem;
       width: 6.2rem; }
