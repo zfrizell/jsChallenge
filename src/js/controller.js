@@ -6,8 +6,9 @@ const dropdownBtn = document.getElementById('dropdownButton')
 const dropdownBtnNone = document.getElementById('dropdown__none')
 const dropdownBtnWalls = document.getElementById('dropdown__walls')
 
-
-
+const triangle = document.getElementById('shape-triangle');
+const square = document.getElementById('shape-square');
+const circle = document.getElementById('shape-circle');
 
 // provides functionality to allow the form to be draggable
 import DraggableForm from './draggable.js';
