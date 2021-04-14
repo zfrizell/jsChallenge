@@ -25,7 +25,7 @@ class CanvasController {
     generateShape(shape, shapeValues){
         if (shape === 'square'){
             this._shapes.push( new Konva.Rect({
-                x: shapeValues.left -shapeValues.width/2,
+                x: shapeValues.left - shapeValues.width/2,
                 y: shapeValues.top - shapeValues.height/2,
                 width: shapeValues.width,
                 height: shapeValues.height,
